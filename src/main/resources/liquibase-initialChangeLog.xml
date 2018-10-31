@@ -1,0 +1,87 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="akirilenko" id="1539156172023-1">
+        <createTable tableName="authorities">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="authority" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_login" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-2">
+        <createTable tableName="comments">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="owner" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="note_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-3">
+        <createTable tableName="notes">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="lat" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lng" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="privacy" type="VARCHAR(255)"/>
+            <column name="user_login" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-4">
+        <createTable tableName="users">
+            <column name="login" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="creation_date" type="datetime"/>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="second_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-5">
+        <createIndex indexName="FK9iabamoajs0wme1dmrp7tfqv6" tableName="comments">
+            <column name="note_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-6">
+        <createIndex indexName="FKhrl3cn1tq2hdq8omx34u8bmnv" tableName="authorities">
+            <column name="user_login"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-7">
+        <createIndex indexName="FKp0vvbgw6ndjybtowwae82rkxp" tableName="notes">
+            <column name="user_login"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-8">
+        <addForeignKeyConstraint baseColumnNames="note_id" baseTableName="comments" constraintName="FK9iabamoajs0wme1dmrp7tfqv6" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="notes" validate="true"/>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-9">
+        <addForeignKeyConstraint baseColumnNames="user_login" baseTableName="authorities" constraintName="FKhrl3cn1tq2hdq8omx34u8bmnv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="login" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-10">
+        <addForeignKeyConstraint baseColumnNames="user_login" baseTableName="notes" constraintName="FKp0vvbgw6ndjybtowwae82rkxp" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="login" referencedTableName="users" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

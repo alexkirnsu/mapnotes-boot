@@ -1,0 +1,127 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <include file="classpath:liquibase-initialChangeLog.xml"></include>
+
+    <changeSet author="akirilenko" id="1539156172023-11">
+        <dropColumn tableName="notes" columnName="message">
+        </dropColumn>
+        <rollback>
+            <addColumn tableName="notes">
+                <column name="message" type="VARCHAR(255)">
+                    <constraints nullable="false"/>
+                </column>
+            </addColumn>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-12">
+        <dropNotNullConstraint columnDataType="double"
+                               columnName="lat"
+                               tableName="notes"/>
+        <dropNotNullConstraint columnDataType="double"
+                               columnName="lng"
+                               tableName="notes"/>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-13">
+        <renameColumn columnDataType="VARCHAR(255)"
+                      newColumnName="role"
+                      oldColumnName="authority"
+                      tableName="authorities"/>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-14">
+        <dropForeignKeyConstraint baseTableName="authorities" constraintName="FKhrl3cn1tq2hdq8omx34u8bmnv"/>
+        <rollback>
+            <addForeignKeyConstraint baseColumnNames="user_login" baseTableName="authorities"
+                                     constraintName="FKhrl3cn1tq2hdq8omx34u8bmnv" deferrable="false"
+                                     initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                     referencedColumnNames="login" referencedTableName="users" validate="true"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-15">
+        <dropIndex indexName="FKhrl3cn1tq2hdq8omx34u8bmnv"
+                   tableName="authorities"/>
+        <rollback>
+            <createIndex indexName="FKhrl3cn1tq2hdq8omx34u8bmnv" tableName="authorities">
+                <column name="user_login"/>
+            </createIndex>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-16">
+        <dropForeignKeyConstraint baseTableName="notes" constraintName="FKp0vvbgw6ndjybtowwae82rkxp"/>
+        <rollback>
+            <addForeignKeyConstraint baseColumnNames="user_login" baseTableName="notes"
+                                     constraintName="FKp0vvbgw6ndjybtowwae82rkxp" deferrable="false"
+                                     initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                     referencedColumnNames="login" referencedTableName="users" validate="true"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-17">
+        <dropIndex indexName="FKp0vvbgw6ndjybtowwae82rkxp"
+                   tableName="notes"/>
+        <rollback>
+            <createIndex indexName="FKp0vvbgw6ndjybtowwae82rkxp" tableName="notes">
+                <column name="user_login"/>
+            </createIndex>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-18">
+        <dropPrimaryKey tableName="users"/>
+        <rollback>
+            <addPrimaryKey columnNames="login"
+                           tableName="users"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-19">
+        <addColumn tableName="users">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+        </addColumn>
+        <rollback>
+            <dropColumn tableName="users" columnName="id"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-20">
+        <createIndex indexName="FKhrl3cn1tq2hdq8omx34u8bmnv111" tableName="authorities">
+            <column name="user_login"/>
+        </createIndex>
+        <rollback>
+            <dropIndex indexName="FKhrl3cn1tq2hdq8omx34u8bmnv111"
+                       tableName="authorities"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-21">
+        <createIndex indexName="FKp0vvbgw6ndjybtowwae82rkxp111" tableName="notes">
+            <column name="user_login"/>
+        </createIndex>
+        <rollback>
+            <dropIndex indexName="FKp0vvbgw6ndjybtowwae82rkxp111"
+                       tableName="notes"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-22">
+        <createIndex indexName="userNaturalKay" tableName="users">
+            <column name="login"/>
+        </createIndex>
+        <rollback>
+            <dropIndex indexName="userNaturalKay"
+                       tableName="users"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-23">
+        <addForeignKeyConstraint baseColumnNames="user_login" baseTableName="authorities"
+                                 constraintName="FKhrl3cn1tq2hdq8omx34u8bmnv111"
+                                 referencedColumnNames="login" referencedTableName="users"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="authorities" constraintName="FKhrl3cn1tq2hdq8omx34u8bmnv111"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-24">
+        <addForeignKeyConstraint baseColumnNames="user_login" baseTableName="notes"
+                                 constraintName="FKp0vvbgw6ndjybtowwae82rkxp111"
+                                 referencedColumnNames="login" referencedTableName="users"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="notes" constraintName="FKp0vvbgw6ndjybtowwae82rkxp111"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

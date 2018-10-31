@@ -1,0 +1,1 @@
+INSERT INTO notes (id, place, lat, lng) VALUES(30, 'place', 0.0, 0.0);

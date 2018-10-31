@@ -1,0 +1,1 @@
+INSERT INTO comments (id, text, owner) VALUES(20, 'Text', 'Alex');
