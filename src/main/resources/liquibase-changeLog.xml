@@ -72,15 +72,21 @@
     </changeSet>
     <changeSet author="akirilenko" id="1539156172023-19">
         <addColumn tableName="users">
-            <column autoIncrement="true" name="id" type="INT"/>
+            <column name="id" type="INT"/>
         </addColumn>
         <rollback>
             <dropColumn tableName="users" columnName="id"/>
         </rollback>
     </changeSet>
     <changeSet author="akirilenko" id="1539156172023-20">
+        <addNotNullConstraint columnDataType="int"
+                              columnName="id"
+                              tableName="users"/>
         <addPrimaryKey columnNames="id"
                        tableName="users"/>
+        <addAutoIncrement columnDataType="int"
+                          columnName="id"
+                          tableName="users"/>
         <rollback>
             <dropPrimaryKey tableName="users"/>
         </rollback>
