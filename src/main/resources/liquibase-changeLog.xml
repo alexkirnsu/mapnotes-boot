@@ -72,15 +72,20 @@
     </changeSet>
     <changeSet author="akirilenko" id="1539156172023-19">
         <addColumn tableName="users">
-            <column autoIncrement="true" name="id" type="INT">
-                <constraints primaryKey="true"/>
-            </column>
+            <column autoIncrement="true" name="id" type="INT"/>
         </addColumn>
         <rollback>
             <dropColumn tableName="users" columnName="id"/>
         </rollback>
     </changeSet>
     <changeSet author="akirilenko" id="1539156172023-20">
+        <addPrimaryKey columnNames="id"
+                       tableName="users"/>
+        <rollback>
+            <dropPrimaryKey tableName="users"/>
+        </rollback>
+    </changeSet>
+    <changeSet author="akirilenko" id="1539156172023-21">
         <createIndex indexName="FKhrl3cn1tq2hdq8omx34u8bmnv111" tableName="authorities">
             <column name="user_login"/>
         </createIndex>
@@ -89,7 +94,7 @@
                        tableName="authorities"/>
         </rollback>
     </changeSet>
-    <changeSet author="akirilenko" id="1539156172023-21">
+    <changeSet author="akirilenko" id="1539156172023-22">
         <createIndex indexName="FKp0vvbgw6ndjybtowwae82rkxp111" tableName="notes">
             <column name="user_login"/>
         </createIndex>
@@ -98,7 +103,7 @@
                        tableName="notes"/>
         </rollback>
     </changeSet>
-    <changeSet author="akirilenko" id="1539156172023-22">
+    <changeSet author="akirilenko" id="1539156172023-23">
         <createIndex indexName="userNaturalKay" tableName="users">
             <column name="login"/>
         </createIndex>
@@ -107,7 +112,7 @@
                        tableName="users"/>
         </rollback>
     </changeSet>
-    <changeSet author="akirilenko" id="1539156172023-23">
+    <changeSet author="akirilenko" id="1539156172023-24">
         <addForeignKeyConstraint baseColumnNames="user_login" baseTableName="authorities"
                                  constraintName="FKhrl3cn1tq2hdq8omx34u8bmnv111"
                                  referencedColumnNames="login" referencedTableName="users"/>
@@ -115,7 +120,7 @@
             <dropForeignKeyConstraint baseTableName="authorities" constraintName="FKhrl3cn1tq2hdq8omx34u8bmnv111"/>
         </rollback>
     </changeSet>
-    <changeSet author="akirilenko" id="1539156172023-24">
+    <changeSet author="akirilenko" id="1539156172023-25">
         <addForeignKeyConstraint baseColumnNames="user_login" baseTableName="notes"
                                  constraintName="FKp0vvbgw6ndjybtowwae82rkxp111"
                                  referencedColumnNames="login" referencedTableName="users"/>

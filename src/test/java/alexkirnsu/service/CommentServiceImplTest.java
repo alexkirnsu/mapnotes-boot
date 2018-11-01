@@ -2,8 +2,7 @@ package alexkirnsu.service;
 
 import com.github.alexkirnsu.dao.CommentDao;
 import com.github.alexkirnsu.dto.CommentDto;
-import com.github.alexkirnsu.entity.Comment;
-import com.github.alexkirnsu.entity.Note;
+import com.github.alexkirnsu.entity.*;
 import com.github.alexkirnsu.service.CommentService;
 import com.github.alexkirnsu.service.impl.CommentServiceImpl;
 import org.junit.*;
@@ -15,11 +14,9 @@ import org.modelmapper.ModelMapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CommentServiceImplTest {
