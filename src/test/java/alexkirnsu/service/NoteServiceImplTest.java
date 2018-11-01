@@ -1,9 +1,7 @@
 package alexkirnsu.service;
 
 import com.github.alexkirnsu.dao.NoteDao;
-import com.github.alexkirnsu.entity.Comment;
-import com.github.alexkirnsu.entity.Note;
-import com.github.alexkirnsu.entity.User;
+import com.github.alexkirnsu.entity.*;
 import com.github.alexkirnsu.service.NoteService;
 import com.github.alexkirnsu.service.impl.NoteServiceImpl;
 import org.junit.*;
