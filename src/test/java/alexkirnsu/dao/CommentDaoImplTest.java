@@ -5,6 +5,7 @@ import com.github.alexkirnsu.Application;
 import com.github.alexkirnsu.dao.CommentDao;
 import com.github.alexkirnsu.entity.Comment;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import org.hibernate.exception.ConstraintViolationException;
 import java.util.List;
 
 import static org.junit.Assert.*;
