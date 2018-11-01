@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.validation.ConstraintViolationException;
+import org.hibernate.exception.ConstraintViolationException;
 import java.util.List;
 
 import static org.junit.Assert.*;
