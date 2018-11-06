@@ -54,11 +54,7 @@ $ liquibase:update
 ```
 and run it.
 ### Running
-Create new maven configuration with command line:
-```sh
-$clean jetty:run-exploded
-```
-and run it.
+Just run 'Application' (Ctrl + Shift + F10)
 
 Open your web browser and visit http://localhost:8080.
 If everything is fine, you should see authentication page.
