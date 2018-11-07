@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.alexkirnsu.dto.NoteDto;
 import com.github.alexkirnsu.service.NoteService;
 import io.swagger.annotations.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/notes")
 public class NoteController {
+
+    private static final Logger logger = LogManager.getLogger(NoteController.class);
 
     @Autowired
     private NoteService noteService;
@@ -40,6 +44,7 @@ public class NoteController {
     })
     public String saveNote(@ModelAttribute("note") NoteDto note,
                            Principal principal) {
+        logger.info("User with login " + principal + " wants to add note.");
         note.setUserLogin(principal.getName());
         noteService.add(note);
         return "redirect:/notes";
@@ -51,6 +56,7 @@ public class NoteController {
             @ApiResponse(code = 200, message = "Note has been deleted")
     })
     public String deleteNote(Model model, @PathVariable("id") int id, Principal principal) {
+        logger.info("User with login " + principal + " wants to delete note with id = " + id);
         boolean availableToDelete = noteService.deleteById(id, principal.getName());
 
         model.addAttribute("availableToDelete", availableToDelete);
