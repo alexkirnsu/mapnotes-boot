@@ -2,8 +2,7 @@ package com.github.alexkirnsu.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
 @Data
 @Embeddable

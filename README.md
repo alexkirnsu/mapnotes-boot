@@ -58,3 +58,6 @@ Just run 'Application' (Ctrl + Shift + F10)
 
 Open your web browser and visit http://localhost:8080.
 If everything is fine, you should see authentication page.
+
+### Documentation
+After authentication it is possible to find swagger documentation of API via http://localhost:8080/swagger-ui.html 

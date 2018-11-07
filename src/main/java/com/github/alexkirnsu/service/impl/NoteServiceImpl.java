@@ -1,11 +1,8 @@
 package com.github.alexkirnsu.service.impl;
 
-import com.github.alexkirnsu.dao.CommentDao;
-import com.github.alexkirnsu.dao.NoteDao;
-import com.github.alexkirnsu.dao.UserDao;
+import com.github.alexkirnsu.dao.*;
 import com.github.alexkirnsu.dto.NoteDto;
-import com.github.alexkirnsu.entity.Comment;
-import com.github.alexkirnsu.entity.Note;
+import com.github.alexkirnsu.entity.*;
 import com.github.alexkirnsu.service.NoteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

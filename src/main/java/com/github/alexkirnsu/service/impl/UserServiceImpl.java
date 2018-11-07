@@ -1,10 +1,8 @@
 package com.github.alexkirnsu.service.impl;
 
-import com.github.alexkirnsu.dao.AuthorityDao;
-import com.github.alexkirnsu.dao.UserDao;
+import com.github.alexkirnsu.dao.*;
 import com.github.alexkirnsu.dto.UserDto;
-import com.github.alexkirnsu.entity.Authority;
-import com.github.alexkirnsu.entity.User;
+import com.github.alexkirnsu.entity.*;
 import com.github.alexkirnsu.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
