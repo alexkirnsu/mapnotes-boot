@@ -1,7 +1,6 @@
 package com.github.alexkirnsu.service.impl;
 
-import com.github.alexkirnsu.dao.CommentDao;
-import com.github.alexkirnsu.dao.NoteDao;
+import com.github.alexkirnsu.dao.*;
 import com.github.alexkirnsu.dto.CommentDto;
 import com.github.alexkirnsu.entity.Comment;
 import com.github.alexkirnsu.service.CommentService;
