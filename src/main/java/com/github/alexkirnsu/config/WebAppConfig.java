@@ -11,17 +11,6 @@ import javax.servlet.Filter;
 @ComponentScan("com.github.alexkirnsu")
 public class WebAppConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/pages/**").addResourceLocations("/pages/");
-
-        registry.addResourceHandler("swagger-ui.html")
-                .addResourceLocations("classpath:/META-INF/resources/");
-
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-    }
-
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
@@ -29,7 +18,6 @@ public class WebAppConfig implements WebMvcConfigurer {
 
     @Bean
     public Filter hiddenHttpMethodFilter() {
-        HiddenHttpMethodFilter filter = new HiddenHttpMethodFilter();
-        return filter;
+        return new HiddenHttpMethodFilter();
     }
 }
