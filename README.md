@@ -35,7 +35,7 @@ And of course MapNotes itself is open source with a [public repository](https://
 
 ### Installation
 
-To simplify installation of database it recomends to use Docker image of MySql. So we will store our database in docker.
+To simplify installation of database it is recommended to use Docker image of MySql. So we will store our database in docker.
 If you haven't Docker already, please [download](https://www.docker.com/get-started).
 To create database you simply need to follow instructions:
 ```sh
@@ -48,11 +48,6 @@ Further create database with name 'mapnotes'
 $ mysql -u root -p password
 $ create database mapnotes
 ```
-To obtain necessary database schema you should create new maven configuration with command line:
-```sh
-$ liquibase:update
-```
-and run it.
 ### Running
 Just run 'Application' (Ctrl + Shift + F10)
 
