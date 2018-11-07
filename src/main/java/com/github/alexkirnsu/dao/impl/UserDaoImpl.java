@@ -3,6 +3,8 @@ package com.github.alexkirnsu.dao.impl;
 import com.github.alexkirnsu.dao.UserDao;
 import com.github.alexkirnsu.entity.User;
 import com.github.alexkirnsu.entity.User_;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +14,8 @@ import javax.persistence.EntityManager;
 
 @Repository
 public class UserDaoImpl implements UserDao {
+
+    private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
 
     @Autowired
     private EntityManager entityManager;
@@ -25,6 +29,7 @@ public class UserDaoImpl implements UserDao {
 
         user.setPassword(encodePassword(user.getPassword()));
         session.save(user);
+        logger.info("User with login " + user.getLogin() + " has saved.");
     }
 
     private String encodePassword(String password) {
