@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.*;
 import javax.servlet.Filter;
 
 @Configuration
-@EnableWebMvc
 @ComponentScan("com.github.alexkirnsu")
 public class WebAppConfig implements WebMvcConfigurer {
 
@@ -21,11 +20,6 @@ public class WebAppConfig implements WebMvcConfigurer {
 
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
-    }
-
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp().prefix("/pages/").suffix(".jsp");
     }
 
     @Bean
