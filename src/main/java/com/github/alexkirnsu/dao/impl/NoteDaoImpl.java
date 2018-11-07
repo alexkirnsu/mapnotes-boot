@@ -2,6 +2,8 @@ package com.github.alexkirnsu.dao.impl;
 
 import com.github.alexkirnsu.dao.NoteDao;
 import com.github.alexkirnsu.entity.Note;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,8 @@ import java.util.List;
 @Repository
 public class NoteDaoImpl implements NoteDao {
 
+    private static final Logger logger = LogManager.getLogger(NoteDaoImpl.class);
+
     @Autowired
     private EntityManager entityManager;
 
@@ -19,6 +23,7 @@ public class NoteDaoImpl implements NoteDao {
     public void add(Note note) {
         Session session = entityManager.unwrap(Session.class);
         session.save(note);
+        logger.info("Note with id = " + note.getId() + " has saved.");
     }
 
     @Override
@@ -26,6 +31,7 @@ public class NoteDaoImpl implements NoteDao {
         Session session = entityManager.unwrap(Session.class);
         Note note = getById(id);
         session.delete(note);
+        logger.info("Note with id = " + note.getId() + " has deleted.");
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.alexkirnsu.dto.CommentDto;
 import com.github.alexkirnsu.service.CommentService;
 import io.swagger.annotations.*;
+import org.apache.logging.log4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/notes/{id}/comments")
 public class CommentController {
+
+    private static final Logger logger = LogManager.getLogger(CommentController.class);
 
     @Autowired
     private CommentService commentService;
@@ -40,6 +43,8 @@ public class CommentController {
     })
     public String saveCommentForNote(@PathVariable("id") int id,
                                      @ModelAttribute("comment") CommentDto commentDto, Principal principal) {
+        logger.info("User with login " + principal.getName()
+                + " wants to save comment in the note with id = " + id);
         commentDto.setNoteId(id);
         commentDto.setOwner(principal.getName());
         commentService.add(commentDto);
@@ -52,7 +57,9 @@ public class CommentController {
             @ApiResponse(code = 200, message = "Comment has been updated")
     })
     public String updateCommentForNote(@PathVariable("commentId") int commentId,
-                                     @RequestParam("text") String text) {
+                                     @RequestParam("text") String text, Principal principal) {
+        logger.info("User with login " + principal.getName() +
+                " wants to update his comment with id = " + commentId);
         commentService.updateText(commentId, text);
         return "redirect:/notes";
     }

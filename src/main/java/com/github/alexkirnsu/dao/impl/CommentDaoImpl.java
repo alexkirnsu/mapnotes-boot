@@ -2,6 +2,8 @@ package com.github.alexkirnsu.dao.impl;
 
 import com.github.alexkirnsu.dao.CommentDao;
 import com.github.alexkirnsu.entity.Comment;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,8 @@ import java.util.List;
 @Repository
 public class CommentDaoImpl implements CommentDao {
 
+    private static final Logger logger = LogManager.getLogger(CommentDaoImpl.class);
+
     @Autowired
     private EntityManager entityManager;
 
@@ -19,6 +23,7 @@ public class CommentDaoImpl implements CommentDao {
     public void add(Comment comment) {
         Session session = entityManager.unwrap(Session.class);
         session.save(comment);
+        logger.info("Comment with id = " + comment.getId() + " has saved.");
     }
 
     @Override
@@ -33,6 +38,7 @@ public class CommentDaoImpl implements CommentDao {
         Comment comment = session.find(Comment.class, id);
         comment.setText(text);
         session.update(comment);
+        logger.info("Comment with id = " + comment.getId() + " has updated.");
     }
 
     @Override
@@ -48,5 +54,6 @@ public class CommentDaoImpl implements CommentDao {
         Session session = entityManager.unwrap(Session.class);
         Comment comment = getById(id);
         session.delete(comment);
+        logger.info("Comment with id = " + comment.getId() + " has deleted.");
     }
 }
